@@ -1,4 +1,4 @@
-node{
+node('main'){
     stage('checkout') { 
        git 'https://github.com/smustaba/maven.git'
     }
