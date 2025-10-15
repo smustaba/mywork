@@ -22,7 +22,7 @@ pipeline{
 	stage('test'){
 	steps{
 	git 'https://github.com/smustaba/FunctionalTesting.git'
-        sh 'java -jar /var/lib/jenkins/workspace/scriptedpipeline/testing.jar'
+        sh 'java -jar /var/lib/jenkins/workspace/declarativejenkins/testing.jar'
 	}
 	}
 	}
