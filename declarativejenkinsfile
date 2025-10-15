@@ -1,0 +1,29 @@
+pipeline{
+	agent any
+	stages{
+	stage('checkout'){
+	steps{
+	git 'https://github.com/smustaba/mywork.git'
+	}
+	}
+
+	stage ('build'){
+	steps{
+	sh 'mvn clean package'
+	}
+	}
+
+	stage('deploy'){
+	steps{
+	deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'f8b20f8f-7146-4dec-976a-57657cd6343e', path: '', url: 'http://172.27.175.43:9090')], contextPath: 'test-app', war: '**/*.war'
+	}
+	}
+
+	stage('test'){
+	steps{
+	git 'https://github.com/smustaba/FunctionalTesting.git'
+        sh 'java -jar /var/lib/jenkins/workspace/scriptedpipeline/testing.jar'
+	}
+	}
+	}
+	}
